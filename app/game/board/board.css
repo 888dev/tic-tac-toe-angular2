@@ -1,12 +1,12 @@
 .game{
   width: 100%;
   height: auto;
-  border: 1px solid grey;
   margin: 0 auto;
 }
 .board{
-  width: auto;
-  height: auto;
+  margin: 1em;
+  width: 50%;
+  height: 60%;
   text-align: center;
   position: relative;
   left: 50%;
@@ -19,11 +19,14 @@
 }
 .board .row .cell{
   float: left;
-  background-color: #ff6e40;
   height: 100%;
-  width: 33%;
-  outline: 1px solid black;
+  background-color: #97CD76;
+  margin: 0.05em;
   position: relative;
+  color: #4C88C7;
+  font-size: 4em;
+  box-sizing: border-box;
+  border-radius: 0.1em;
 }
 .board .row .cell .playerSign{
   position: absolute;
@@ -33,7 +36,9 @@
   font-weight: bold;
   text-transform: uppercase;
 }
-
+.board .row .cell .playerSign .winning-row{
+  color: #ac2925;
+}
 .clear{
   clear: both;
 }
