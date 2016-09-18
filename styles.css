@@ -12,3 +12,34 @@ body h1{
     margin: 0 auto;
     text-align: center;
 }
+
+.game .winnerContainer{
+    position: fixed;
+    padding: 0.3em;
+    top: 50%;
+    left: 50%;
+    width: 20em;
+    height: 14em;
+    z-index: 2;
+    background: rgba(193, 188, 185, 0.8);
+    border-radius: 1.2em;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.game .winnerContainer h2{
+    margin-top: 2.7em;
+}
+.game .gameHistory{
+    position: fixed;
+    left: 3em;
+}
+.bgDiv{
+    position:fixed;
+    top:0;
+    left:0;
+    background:#000;
+    opacity:0.8;
+    z-index:1;
+    height:100%;
+    width:100%;
+}
