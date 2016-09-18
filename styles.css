@@ -1,0 +1,14 @@
+/* Master Styles */
+body {
+    margin: 2em;
+    font-family: Verdana, Geneva, sans-serif;
+}
+body h1{
+    text-align: center;
+}
+
+.game .options{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
