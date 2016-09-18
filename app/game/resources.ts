@@ -4,5 +4,6 @@ export const Resources = {
     winningsX: 'Winnings X',
     won: 'won!',
     numberRowCol: 'Number of rows x columns',
-    startGame: 'Start Game'
+    startGame: 'Start Game',
+    close: 'Close'
 };
