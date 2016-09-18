@@ -1,0 +1,11 @@
+<div *ngIf="gameData.winner" class="winnerContainer">
+    <h2>{{ gameData.winner }} {{resources.won}}</h2>
+    <h3>{{resources.winningsX}} {{ gameData.winningsX }}</h3>
+    <h3>{{resources.winningsO}} {{ gameData.winningsO }}</h3>
+</div>
+<div *ngIf="!gameData.isStarted || gameData.winner" class="options">
+    <span>{{resources.numberRowCol}}</span>
+    <input type="text" [(ngModel)]="dimension">
+    <input type="button" value="{{resources.startGame}}" (click)="startGame()">
+</div>
+<div class="board" [board]="createdBoard"></div><div class="clear"></div>
