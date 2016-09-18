@@ -10,7 +10,6 @@ import { Resources } from './resources.ts';
 })
 export class GameComponent {
     public createdBoard = [];
-    public dimension = 3;
     gameData = this._gameCreatorService.getGameData();
     resources = Resources;
 
@@ -18,7 +17,13 @@ export class GameComponent {
 
     startGame(){
         this._gameCreatorService.resetGame();
-        this.createdBoard = this._gameCreatorService.createBoard(this.dimension ? this.dimension : 3);
+        this.createdBoard = this._gameCreatorService.createBoard(this.gameData.dimension);
+        //calc width of cells
+        this.gameData.widthOfCell = (95 / this.gameData.dimension) + '%';
         console.log('new game started');
+    }
+    close(){
+        this._gameCreatorService.resetGame();
+        this.createdBoard = [];
     }
 }
