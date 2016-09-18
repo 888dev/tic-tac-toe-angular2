@@ -1,0 +1,7 @@
+<div class="row" *ngFor="let row of board; let x=index">
+    <div *ngFor="let cell of row; let y=index">
+        <div class="cell" (click)="onSelect(x, y)" [style.width]="gameData.widthOfCell" >
+            <span [class.winning-row]="cell.isWinningCell" class="playerSign">{{cell.turn}}</span>
+        </div>
+    </div>
+</div>
