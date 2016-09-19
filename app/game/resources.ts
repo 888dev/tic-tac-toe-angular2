@@ -3,7 +3,8 @@ export const Resources = {
     winningsO: 'Winnings O',
     winningsX: 'Winnings X',
     won: 'won!',
-    numberRowCol: 'Number of rows x columns',
+    numberRowCol: 'Please choose number of rows * columns between 3-6',
     startGame: 'Start Game',
-    close: 'Close'
+    close: 'Close',
+    draw: 'Draw try again !'
 };
