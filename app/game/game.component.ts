@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
-import { BoardComponent } from 'app/game/board/board.component.ts';
 import { GameCreatorService } from './gameCreator.service.ts'
 import { Resources } from './resources.ts';
 
 @Component({
     selector: '.game',
-    templateUrl: 'app/game/game.html',
-    directives: [ BoardComponent ]
+    templateUrl: 'app/game/game.html'
 })
 export class GameComponent {
     public createdBoard = [];
-    gameData = this._gameCreatorService.getGameData();
+    public gameData = this._gameCreatorService.getGameData();
     resources = Resources;
 
     constructor(private _gameCreatorService: GameCreatorService) { }
@@ -21,6 +19,10 @@ export class GameComponent {
         //calc width of cells
         this.gameData.widthOfCell = (95 / this.gameData.dimension) + '%';
         console.log('new game started');
+    }
+
+    cellSelected(point){
+        this._gameCreatorService.checkBoard(point.row, point.col);
     }
     close(){
         this._gameCreatorService.resetGame();
