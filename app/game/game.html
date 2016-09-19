@@ -3,13 +3,20 @@
     <h2>{{ gameData.winner }} {{resources.won}}</h2>
     <input type="button" value="{{resources.close}}" (click)="close()">
 </div>
-<div class="options">
-    <span>{{resources.numberRowCol}}</span>
-    <input type="text" [(ngModel)]="gameData.dimension">
-    <input type="button" value="{{resources.startGame}}" (click)="startGame()">
+
+<div class="bgDiv" *ngIf="gameData.draw"></div>
+<div *ngIf="gameData.draw" class="winnerContainer">
+    <h2>{{resources.draw}}</h2>
+    <input type="button" value="{{resources.close}}" (click)="close()">
 </div>
+
+<form class="options" (ngSubmit)="startGame()">
+    <span>{{resources.numberRowCol}}</span><br>
+    <input type="number" [(ngModel)]="gameData.dimension" required name="dimension" min="3" max="6">
+    <input type="submit" value="{{resources.startGame}}">
+</form>
 <div class="gameHistory">
     <span>{{resources.winningsX}} {{ gameData.winningsX }}</span><br>
     <span>{{resources.winningsO}} {{ gameData.winningsO }}</span>
 </div>
-<div class="board" [board]="createdBoard"></div><div class="clear"></div>
+<div class="board" [board]="createdBoard" [gameData]="gameData" (cellSelected)="cellSelected($event)"></div><div class="clear"></div>
