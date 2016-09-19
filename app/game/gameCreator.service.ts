@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Player } from 'app/game/player.ts';
 
 @Injectable()
 export class GameCreatorService {
-    //default game data
+//default game data
     private gameData = {
-        turn: 'x',
+        turn: Player.x,
         winningsX: 0,
         winningsO: 0,
         winner: '',
+        draw: '',
         isStarted: false,
         dimension: 3,
-        widthOfCell: 0
+        widthOfCell: 0,
+        numOfXTurns: 0,
+        clicksCount: 0
     };
     private board = [];
     //create board by dimension
@@ -23,6 +27,8 @@ export class GameCreatorService {
             }
         }
         this.gameData.isStarted = true;
+        this.gameData.numOfXTurns = 0;
+        this.gameData.clicksCount = 0;
         return this.board;
     }
     //get gamedata
@@ -30,26 +36,45 @@ export class GameCreatorService {
         return this.gameData;
     }
     resetGame(){
-        this.gameData.turn = 'x';
+        this.gameData.turn = Player.x;
         this.gameData.winner = '';
+        this.gameData.draw = '';
         this.board = [];
         this.gameData.isStarted = false;
+        this.gameData.numOfXTurns = 0;
+        this.gameData.clicksCount = 0;
     }
     //check board for winning rows
     checkBoard(row, col){
-        var columnArray = this.board.map(function(value,index) { return value[col]; });
-        var leftToRight = this.board.map((row, index) => row[index]);
-        var rightToLeft = this.board.map((row, index) => row[row.length - 1 - index]);
+        //count num of x player click
+        this.gameData.numOfXTurns = this.gameData.turn === Player.x ? this.gameData.numOfXTurns++ : this.gameData.numOfXTurns;
 
-        //check arrays for winner
-        if(this.checkArray(this.board[row]) || this.checkArray(columnArray) || this.checkArray(leftToRight) || this.checkArray(rightToLeft)){
-            //set winner current turn
-            this.gameData.winner = this.gameData.turn;
-            //count winnings for current turn
-            this.gameData.turn === 'x' ? this.gameData.winningsX++ : this.gameData.winningsO++;
-            //empty the board
-            this.board = [];
-            console.log('Winner in row is ' + this.gameData.turn);
+        //count num of players click
+        this.gameData.clicksCount++;
+
+        //check if draw in game
+        if(this.gameData.clicksCount === (parseInt(this.gameData.dimension) * parseInt(this.gameData.dimension)) - 1){
+            this.gameData.draw = 'draw';
+        }
+
+        //start check the board after specific click
+        if (this.gameData.numOfXTurns >= parseInt(this.gameData.dimension)) {
+            var columnArray = this.board.map(function (value) {
+                return value[col];
+            });
+            var leftToRight = this.board.map((row, index) => row[index]);
+            var rightToLeft = this.board.map((row, index) => row[row.length - 1 - index]);
+
+            //check arrays for winner
+            if (this.checkArray(this.board[row]) || this.checkArray(columnArray) || this.checkArray(leftToRight) || this.checkArray(rightToLeft)) {
+                //set winner current turn
+                this.gameData.winner = this.gameData.turn;
+                //count winnings for current turn
+                this.gameData.turn === Player.x ? this.gameData.winningsX++ : this.gameData.winningsO++;
+                //empty the board
+                this.board = [];
+                console.log('Winner in row is ' + this.gameData.turn);
+            }
         }
     }
     //checks arrays for winning row
