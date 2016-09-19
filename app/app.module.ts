@@ -13,4 +13,3 @@ import { GameCreatorService } from './game/gameCreator.service.ts'
     providers: [ GameCreatorService ]
 })
 export class AppModule { }
-
