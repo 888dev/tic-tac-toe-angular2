@@ -47,7 +47,7 @@ export class GameCreatorService {
     //check board for winning rows
     checkBoard(row, col){
         //count num of x player click
-        this.gameData.numOfXTurns = this.gameData.turn === Player.x ? this.gameData.numOfXTurns++ : this.gameData.numOfXTurns;
+        this.gameData.numOfXTurns = this.gameData.turn === Player.x ? this.gameData.numOfXTurns + 1 : this.gameData.numOfXTurns;
 
         //count num of players click
         this.gameData.clicksCount++;
